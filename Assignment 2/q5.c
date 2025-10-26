@@ -8,14 +8,13 @@ int Encode(char arr[])
     int len = strlen(arr);
 
     if (arr[len - 1] == '\n')
-    { // remove newline if present
+    {
         arr[len - 1] = '\0';
         len--;
     }
 
     char modarr[len + 1];
 
-    // reverse
     for (i = 0; i < len / 2; i++)
     {
         temp = arr[i];
@@ -23,9 +22,6 @@ int Encode(char arr[])
         arr[len - i - 1] = temp;
     }
 
-    printf("Reversed String : %s\n", arr);
-
-    // toggle 2nd and 5th bit
     for (i = 0; i < len; i++)
     {
         asci = arr[i];
@@ -36,7 +32,6 @@ int Encode(char arr[])
 
     printf("Encoded Message : %s\n", modarr);
 
-    // copy back so main can reuse it
     strcpy(arr, modarr);
     return 1;
 }
@@ -46,7 +41,6 @@ int Decode(char arr[])
     int i, asci, modasci;
     int len = strlen(arr);
 
-    // ✅ FIX 1: remove newline before decoding
     if (arr[len - 1] == '\n')
     {
         arr[len - 1] = '\0';
@@ -64,7 +58,6 @@ int Decode(char arr[])
 
     modarr[len] = '\0';
 
-    // ✅ FIX 2: print clearly
     printf("Decoded Message : %s\n", modarr);
 
     return 1;
@@ -74,14 +67,51 @@ int main()
 {
     char message[100];
     char enc[100];
+    int istrue = 1, choice;
 
-    printf("Enter message to encode: ");
-    fgets(message, sizeof(message), stdin);
-    Encode(message);
+    while (istrue)
+    {
 
-    printf("\nEnter encoded message to decode: ");
-    fgets(enc, sizeof(enc), stdin);
-    Decode(enc);
+        printf("\n------------------------Menu----------------------------\n");
+        printf("1. Encode Message \n2. Decode Message \n3. Exit");
+        printf("\n---------------------------------------------------------\n");
 
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        while (getchar() != '\n')
+            ;
+
+        switch (choice)
+        {
+        case 1:
+        {
+            printf("Enter message to encode: ");
+            fgets(message, sizeof(message), stdin);
+            Encode(message);
+            break;
+        }
+
+        case 2:
+        {
+            printf("\nEnter encoded message to decode: ");
+            fgets(enc, sizeof(enc), stdin);
+            Decode(enc);
+            break;
+        }
+
+        case 3:
+        {
+            printf("\n\t...Exited...\n");
+            istrue = 0;
+            break;
+        }
+
+        default:
+        {
+            printf("Invalid Choice!! Try Again");
+            break;
+        }
+        }
+    }
     return 0;
 }
