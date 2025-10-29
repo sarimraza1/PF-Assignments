@@ -20,9 +20,9 @@ int UpdateSector(int arr[100][100])
     scanf("%d", &action);
 
     if (action == 1)
-        arr[r][c] |= (1 << bitChoice); // Set bit
+        arr[r][c] |= (1 << bitChoice);
     else
-        arr[r][c] &= ~(1 << bitChoice); // Clear bit
+        arr[r][c] &= ~(1 << bitChoice);
 
     return 1;
 }
