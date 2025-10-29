@@ -74,12 +74,12 @@ int AddItemToCart(int arr[4][3], int *total)
     *total += bill;
 
     printf("\nEnter 1 if you would like to add more items to cart or Press 0 to Checkout: ");
-    scanf("%d", &k); // ✅ must use &
+    scanf("%d", &k);
 
     return k;
 }
 
-int DisplayBill(int total, char *name, int cnic) // ✅ name should be char* not char
+int DisplayBill(int total, char *name, int cnic)
 {
     int has;
     printf("\nWe Are Offering a Promocode of EID2025\n");
